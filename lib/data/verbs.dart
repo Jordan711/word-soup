@@ -1,0 +1,22 @@
+List<String> verbs = [ 
+    "Run", 
+    "Eat", 
+    "Go", 
+    "Make", 
+    "Take", 
+    "Give", 
+    "Come", 
+    "See", 
+    "Think", 
+    "Know", 
+    "Talk", 
+    "Write", 
+    "Listen", 
+    "Play", 
+    "Work", 
+    "Read", 
+    "Help", 
+    "Drive", 
+    "Sleep", 
+    "Watch"
+];

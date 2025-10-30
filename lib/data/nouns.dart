@@ -1,0 +1,22 @@
+List<String> nouns = [ 
+    "Person", 
+    "Time", 
+    "Year", 
+    "Way", 
+    "Day", 
+    "Thing", 
+    "Man", 
+    "World", 
+    "Life", 
+    "Hand", 
+    "Part", 
+    "Child", 
+    "Eye", 
+    "Woman", 
+    "Place", 
+    "Work", 
+    "Week", 
+    "Case", 
+    "Point", 
+    "Government"
+];
