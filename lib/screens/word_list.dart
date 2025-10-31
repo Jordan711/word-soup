@@ -6,11 +6,18 @@ import 'package:word_soup/providers/word_cart.dart';
 import 'package:word_soup/screens/word_cart_page.dart';
 import 'package:word_soup/widgets/word_button.dart';
 
-class WordList extends ConsumerWidget {
+enum WordType { noun, verb }
+
+class WordList extends ConsumerStatefulWidget {
   const WordList({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  WordListState createState() => WordListState();
+}
+
+class WordListState extends ConsumerState<WordList> {
+  @override
+  Widget build(BuildContext context) {
     final count = ref.watch(easterEggCounter);
     final wordCart = ref.watch(wordCartList);
 
@@ -57,9 +64,11 @@ class WordList extends ConsumerWidget {
 
           ElevatedButton(
             onPressed: () {
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (ctx) => Scaffold(body: WordCartPage())));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => Scaffold(body: WordCartPage()),
+                ),
+              );
             },
             child: Text("Generate Sentence"),
           ),
