@@ -4,7 +4,7 @@ class VerbCart extends Notifier<List<String>> {
   @override
   List<String> build() => [];
 
-  void addItem(String item) {
+  void addVerb(String item) {
     state = [...state, item];
   }
 

@@ -4,7 +4,7 @@ class NounCart extends Notifier<List<String>> {
   @override
   List<String> build() => [];
 
-  void addItem(String item) {
+  void addNoun(String item) {
     state = [...state, item];
   }
 

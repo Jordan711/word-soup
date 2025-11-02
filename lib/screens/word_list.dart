@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:word_soup/data/nouns.dart';
 import 'package:word_soup/data/verbs.dart';
 import 'package:word_soup/providers/easter_egg_count.dart';
-import 'package:word_soup/providers/word_cart.dart';
+
 import 'package:word_soup/screens/word_cart_page.dart';
 import 'package:word_soup/widgets/word_button.dart';
 
@@ -22,7 +22,6 @@ class WordListState extends ConsumerState<WordList> {
   @override
   Widget build(BuildContext context) {
     final count = ref.watch(easterEggCounter);
-    final wordCart = ref.watch(wordCartList);
 
     return Container(
       padding: EdgeInsets.all(32.0),
@@ -46,21 +45,26 @@ class WordListState extends ConsumerState<WordList> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               for (var wordType in WordType.values)
-                ElevatedButton(onPressed: () {
-                  setState(() {
-                    currPage = wordType;
-                  });
-                }, child: Text(wordType.toString().split('.').last.toUpperCase())),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      currPage = wordType;
+                    });
+                  },
+                  child: Text(
+                    wordType.toString().split('.').last.toUpperCase(),
+                  ),
+                ),
             ],
           ),
           SizedBox(
             height: 500,
             child: GridView.builder(
               itemCount: currPage == WordType.noun
-                ? nouns.length
-                : currPage == WordType.verb
-                ? verbs.length
-                : 0,
+                  ? nouns.length
+                  : currPage == WordType.verb
+                  ? verbs.length
+                  : 0,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 childAspectRatio: 4,
@@ -77,18 +81,8 @@ class WordListState extends ConsumerState<WordList> {
                 }
 
                 String itemName = words[index];
-                bool itemSelected = wordCart.contains(itemName);
-
                 return Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: itemSelected
-                          ? Border.all(color: Colors.green, width: 2)
-                          : Border.all(color: Colors.black, width: 2),
-                      borderRadius: BorderRadius.circular(5.4),
-                    ),
-                    child: WordButton(itemName: itemName),
-                  ),
+                  child: WordButton(itemName: itemName, wordType: currPage,)
                 );
               },
             ),
