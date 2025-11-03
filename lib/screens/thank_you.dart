@@ -18,13 +18,17 @@ class ThankYou extends ConsumerWidget {
     final List<String> verbCart = ref.watch(verbCartList)..shuffle();
 
     final String sentence = _generateSentence(nounCart, verbCart);
+    // TODO clear the carts after checkout
 
     return Container(
       padding: EdgeInsets.all(32.0),
       child: Column(
         children: [
           Text("Here is your sentence:"),
-          Text(sentence)
+          Text(sentence),
+          ElevatedButton(onPressed: (){
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }, child: Text("Generate another sentence!"))
         ],
       ),
     );
