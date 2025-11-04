@@ -11,6 +11,10 @@ class VerbCart extends Notifier<List<String>> {
   void removeVerb(String verb) {
     state = state.where((w) => w != verb).toList();
   }
+
+  void clearCart() {
+    state = [];
+  }
 }
 
 final verbCartList = NotifierProvider<VerbCart, List<String>>(VerbCart.new);

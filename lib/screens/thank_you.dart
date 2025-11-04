@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:word_soup/providers/word_cart/noun_cart.dart';
 import 'package:word_soup/providers/word_cart/verb_cart.dart';
 
-
 String _generateSentence(List<String> nouns, List<String> verbs) {
   String sentence = "${(List.of([...nouns, ...verbs])..shuffle()).join(' ')}!!";
   return sentence.toString();
@@ -18,17 +17,21 @@ class ThankYou extends ConsumerWidget {
     final List<String> verbCart = ref.watch(verbCartList)..shuffle();
 
     final String sentence = _generateSentence(nounCart, verbCart);
-    // TODO clear the carts after checkout
-
+    
     return Container(
       padding: EdgeInsets.all(32.0),
       child: Column(
         children: [
           Text("Here is your sentence:"),
           Text(sentence),
-          ElevatedButton(onPressed: (){
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          }, child: Text("Generate another sentence!"))
+          ElevatedButton(
+            onPressed: () {
+              ref.read(nounCartList.notifier).clearCart();
+              ref.read(verbCartList.notifier).clearCart();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+            child: Text("Generate another sentence!"),
+          ),
         ],
       ),
     );

@@ -11,6 +11,10 @@ class NounCart extends Notifier<List<String>> {
   void removeNoun(String noun) {
     state = state.where((w) => w != noun).toList();
   }
+
+  void clearCart() {
+    state = [];
+  }
 }
 
 final nounCartList = NotifierProvider<NounCart, List<String>>(NounCart.new);
