@@ -18,8 +18,22 @@ class WordCartPage extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(children: [Text("Your Nouns"), Text(nounCart.join(', '))]),
-          Column(children: [Text("Your Verbs"), Text(verbCart.join(', '))]),
+          Column(
+            children: [
+              nounCart.isEmpty
+                  ? Text("No Nouns Selected!")
+                  : Text("Your Nouns - ${nounCart.length}"),
+              Text(nounCart.join(', ')),
+            ],
+          ),
+          Column(
+            children: [
+              verbCart.isEmpty
+                  ? Text("No Verbs Selected!")
+                  : Text("Your Verbs - ${verbCart.length}"),
+              Text(verbCart.join(', ')),
+            ],
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
